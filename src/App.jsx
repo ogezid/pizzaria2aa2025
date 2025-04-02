@@ -3,7 +3,7 @@ import { useState } from "react"
 function App(){
   const [nome, setNome] = useState('Ronaldo');
 
-  const Formulario = () => {
+  const Formulario = (props) => {
     return(
       <>
       <h4>Formulario de Inscrição
@@ -11,9 +11,11 @@ function App(){
        <input className="Nome"
        name= "nome"
        placeholder="Digite seu nome"
-       onChange={(e)=>setNome(e.target.value)}
+       onChange={(e)=>props.nome=e.target.value}
          type="text"/>
-        <button onClick={()=>{alert(nome)}}>
+        <button onClick={()=>{
+         (props.texto !=null) ?alert(props.texto) : alert(props.nome)
+          }}>
         Clique aqui  
         </button>
         </>
@@ -22,9 +24,10 @@ function App(){
   return (
     <div>
       <h3>Pizzaria 2A</h3>
-      <Formulario/>
-      <Formulario/>
-      <Formulario/>
+      <Formulario texto="Oii"/>
+      <Formulario texto="Oie"/>
+      <Formulario texto="Ola"/>
+      <Formulario nome={nome}/> 
       
     </div>
   )
